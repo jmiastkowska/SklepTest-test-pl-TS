@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:pulpit:headed": "npm run test tests/pulpit.spec.ts -- --headed",
+    "test:headed": "npx playwright test --headed"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Joanna M",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/node": "^20.10.8"
+    "@types/node": "^20.10.8",
+    "prettier": "3.1.1"
   }
 }

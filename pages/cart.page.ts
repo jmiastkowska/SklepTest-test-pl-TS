@@ -5,6 +5,7 @@ export class CartPage{
     
     
     titlePage = this.page.locator('//*[@class="page-title margin-top"]');
+    cart
 
 
 }

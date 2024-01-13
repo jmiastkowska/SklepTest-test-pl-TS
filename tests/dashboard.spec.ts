@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { DashboardPage } from '../pages/dashboard.page';
 import { CartPage } from '../pages/cart.page';
 import { TIMEOUT } from 'dns';
+import { JacketSoulColorPage } from '../pages/JacketsSoulColor.page';
 
 test.describe('test main function of the dashboard', () => {
   let dashboardPage: DashboardPage;
@@ -47,4 +48,14 @@ test.describe('test main function of the dashboard', () => {
     const cartPage = new CartPage(page);
     await expect(dashboardPage.viewCartButton).toHaveText('View cart');
   });
+
+  test('go to the blog from the dashboard', async ({ page }) => {
+   
+    await dashboardPage.postTitle.click();
+
+    const jacketSoulColorPage = new JacketSoulColorPage(page);
+    await expect(jacketSoulColorPage.titlePage).toHaveText('Jackets For The Soul. What Color Is Yours?');
+  });
+
+
 });

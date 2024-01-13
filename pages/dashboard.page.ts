@@ -12,6 +12,7 @@ export class DashboardPage {
   addToCartScrafButton = this.page.locator('//*[@href="/?add-to-cart=35"]');
   myCartButton = this.page.locator('.top-cart');
   viewCartButton = this.page.locator('//*[@class="added_to_cart wc-forward"]');
+  postTitle = this.page.locator('//*[@id="tyche_recent-2"]/div[2]/div[2]/p');
 
   async addFirstProductToTheCart(): Promise<void> {
     await this.addToCartFirstButton.click();

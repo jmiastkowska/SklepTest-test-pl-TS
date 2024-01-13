@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 
-export class CartPage{
+export class JacketSoulColorPage{
     constructor(private page: Page) {}
     
     
-    titlePage = this.page.locator('//*[@class="page-title margin-top"]');
+    titlePage = this.page.locator('//*[@class="entry-title"]');
     
 
 

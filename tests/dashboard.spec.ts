@@ -45,7 +45,6 @@ test.describe('test main function of the dashboard', () => {
    
     await dashboardPage.addToCartFirstButton.click();
 
-    const cartPage = new CartPage(page);
     await expect(dashboardPage.viewCartButton).toHaveText('View cart');
   });
 

@@ -10,30 +10,32 @@ test.describe('test main function of the dashboard', () => {
   });
 
   test('add 1 product to the cart', async ({ page }) => {
-   
     await dashboardPage.addFirstProductToTheCart();
 
     const cartPage = new CartPage(page);
     await expect(cartPage.titlePage).toHaveText('Cart');
   });
 
-  test('add 3 products from diffrent category to the cart', async ({ page }) => {
-  // const expectedFirstProduct =  await page.getByRole('cell', { name: 'Black Top' });
-  // const expectedSecondProduct = await page.getByRole('cell', { name: 'FITT Belts' });
-  // const expectedThirdProduct = await page.getByRole('cell', { name: 'Jennifer Scarf' });
+  test('add 3 products from diffrent category to the cart', async ({
+    page,
+  }) => {
+    const expectedFirstProduct = page.getByRole('cell', { name: 'Black Top' });
+    const expectedSecondProduct = page.getByRole('cell', {
+      name: 'FITT Belts',
+    });
+    const expectedThirdProduct = page.getByRole('cell', {
+      name: 'Jennifer Scarf',
+    });
 
     await dashboardPage.addToCartFirstButton.click();
     await dashboardPage.addToCartFirstMostWantedBeltButton.click();
     await dashboardPage.addToCartScrafButton.click();
-    await dashboardPage.addToCartOnSaleManagoShirtButton.click();
     await dashboardPage.myCartButton.click();
 
     const cartPage = new CartPage(page);
     await page.reload();
-    //await expect([expectedFirstProduct, expectedSecondProduct, expectedThirdProduct]).toEqual(expect.arrayContaining([expectedFirstProduct, expectedSecondProduct, expectedThirdProduct]));
-    await expect(page.locator('div >form')).toContainText(['Black Top', 'FITT Belts','Jennifer Scarf','Manago shirt']);
-
-  
+    await expect(expectedFirstProduct).toContainText('Black Top');
+    await expect(expectedSecondProduct).toContainText('FITT Belts');
+    await expect(expectedThirdProduct).toContainText('Jennifer Scarf');
   });
-
 });

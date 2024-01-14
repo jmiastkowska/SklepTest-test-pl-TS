@@ -15,9 +15,11 @@ test.describe('tests cart page', () => {
     test('change number of products in the cart', async ({ page }) => {
       const dashboardPage = new DashboardPage(page);
         await dashboardPage.addFirstProductToTheCart();
+        await cartPage.plusButton.click();
+        await cartPage.updateCartButton.click();
   
-     // const cartPage = new CartPage(page);
-     // await expect(cartPage.titlePage).toHaveText('Cart');
+          await expect(cartPage.quantity).toHaveValue('2');
+        
     });
 
 });

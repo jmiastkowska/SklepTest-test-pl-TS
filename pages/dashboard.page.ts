@@ -1,7 +1,10 @@
 import { Page } from '@playwright/test';
+import { SideMenuComponent } from '../components/side-menu.component';
 
 export class DashboardPage {
   constructor(private page: Page) {}
+ 
+  sideMenu = new SideMenuComponent(this.page);
 
   addToCartFirstButton = this.page.locator(
     '//*[@class="ajax_add_to_cart add_to_cart_button button primary"][@href="/?add-to-cart=19"]',

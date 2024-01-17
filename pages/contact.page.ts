@@ -9,7 +9,7 @@ export class ContactPage {
     messageInput = this.page.getByLabel('Your Message');
   
     sendButton = this.page.getByRole('button', { name: 'Send' });
-    
-    requiredEmailText = this.page.locator('//*[@class="wpcf7-not-valid-tip"]');
-    errorMessageAfterClickingSend = this.page.locator('//*[@id="wpcf7-f4-p10-o1"]/form/div[2]');
+    requiredNameText= this.page.locator('//*[@class="wpcf7-form-control-wrap your-name"]/span')
+    requiredEmailText = this.page.locator('//*[@class="wpcf7-form-control-wrap your-email"]/span');
+    errorMessageAfterClickingSend = this.page.locator('//*[@class="wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ng"]');
   }

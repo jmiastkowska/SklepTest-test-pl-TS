@@ -46,4 +46,20 @@ test.describe('tests sending messages', () => {
 
     await expect(contactPage.requiredEmailText).toHaveText(expectedMessage);
   });
+
+  test('send message with empty name', async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const email = 'test12345@wp.pl';
+    const subject = 'hello';
+    const message = 'Please give me an answer';
+    const expectedMessage = 'The field is required.';
+
+    await dashboardPage.sideMenu.aboutUsButton.click();
+    await contactPage.emailInput.fill(email);
+    await contactPage.subjectInput.fill(subject);
+    await contactPage.messageInput.fill(message);
+    await contactPage.sendButton.click();
+
+    await expect(contactPage.requiredNameText).toHaveText(expectedMessage);
+  });
 });

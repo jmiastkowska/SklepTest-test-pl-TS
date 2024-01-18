@@ -26,12 +26,22 @@ test.describe('tests cart page', () => {
     });
     
     test('remove the one product from the cart', async ({ page }) => {
-      const dashboardPage = new DashboardPage(page);
-        await dashboardPage.addFirstProductToTheCart();
-        await cartPage.plusButton.click();
+     
+     
+        await cartPage.minusButton.click();
         await cartPage.updateCartButton.click();
   
-          await expect(cartPage.quantity).toHaveValue('2');
+          await expect(cartPage.emptyCartMessage).toHaveText('Your cart is currently empty.');
         
     });
+
+    test('check if the button "Return to shop" redirect the user to the shop', async ({ page }) => {
+     
+      await cartPage.minusButton.click();
+      await cartPage.updateCartButton.click();
+      await cartPage.returnToShopButton.click();
+      
+      await expect(page).toHaveURL(/.shop/);
+      
+  });
 });

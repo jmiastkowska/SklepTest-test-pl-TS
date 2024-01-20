@@ -24,7 +24,7 @@ test.describe('tests cart page', () => {
   
           await expect(cartPage.quantity).toHaveValue('2');
           await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
-        await expect(receviedSubtotalPrice).toEqual(expectedSubtotalPrice);
+        await expect(subtotalPrice).toHaveTex(`${expectedSubtotalPrice} zł`);
     });
     
     test('remove the one product from the cart', async ({ page }) => {

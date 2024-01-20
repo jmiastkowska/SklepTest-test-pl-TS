@@ -12,5 +12,5 @@ export class CartPage {
   updateCartMessage = this.page.locator('.woocommerce-message');
   emptyCartMessage = this.page.locator('//*[@class="cart-empty"]');
   unitPrice = this.page.locator('//td[@class="product-price"]/span');
-  subtotalPrice = this.page.locator('//td[@class="product-subtotal"]/span');
+  subtotalPrice = this.page.getByText('70 zł');
 }

@@ -14,17 +14,19 @@ test.describe('tests cart page', () => {
     });
   
     test.only('add 1 product on the cart', async ({ page }) => {
-      const unitPrice = await page.locator('//td[@class="product-price"]/span').innerText();
+     
+      
+      await cartPage.plusButton.click();
+      await cartPage.updateCartButton.click();
+      
+      await expect(cartPage.quantity).toHaveValue('2');
+      await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
+       const unitPriceTxt = await page.locator('//td[@class="product-price"]/span').innerText();
+       const unitPrice = unitPriceTxt.replace(' zł','');
+      //const receviedSubtotalPrice = Number(subtotalPrice.replace(' zł', ''));
+      const  expectedSubtotalPrice = Number(unitPrice);
       const subtotalPrice = await page.locator('//*[@id="post-6"]/div[2]/form/table/tbody/tr[1]/td[6]/span').innerText();
-      const receviedSubtotalPrice = Number(subtotalPrice.replace(' zł', ''));
-      const  expectedSubtotalPrice = Number(unitPrice.replace(' zł', '')) * 2;
-        
-        await cartPage.plusButton.click();
-        await cartPage.updateCartButton.click();
-  
-          await expect(cartPage.quantity).toHaveValue('2');
-          await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
-        await expect(subtotalPrice).toHaveTex(`${expectedSubtotalPrice} zł`);
+        await expect(subtotalPrice).toContainEqual(expectedSubtotalPrice);
     });
     
     test('remove the one product from the cart', async ({ page }) => {

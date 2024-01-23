@@ -20,5 +20,6 @@ export class DashboardPage {
   async addFirstProductToTheCart(): Promise<void> {
     await this.addToCartFirstButton.click();
     await this.myCartButton.click();
+    await this.page.reload();
   }
 }

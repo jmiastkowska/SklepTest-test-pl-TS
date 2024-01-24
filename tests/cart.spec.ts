@@ -14,7 +14,6 @@ test.describe('tests cart page', () => {
   });
 
   test('add to the cart 1 product on the cart page', async ({ page }) => {
-  
     await cartPage.plusButton.click();
     await cartPage.updateCartButton.click();
 
@@ -53,15 +52,34 @@ test.describe('tests cart page', () => {
     await expect(page).toHaveURL(/.shop/);
   });
 
-  test('check shipping price', async ({ page }) => {
-    await cartPage.calculateShipingButton.click();
-    await cartPage.defaultShippingCountry.click();
-    await cartPage.searchDropdownInput.click();
-    await cartPage.searchDropdownInput.fill('germ');
-    await cartPage.shippingToGermany.click();
-  
-    await cartPage.postcodeInput.fill('12345');
-    await cartPage.updateShipingPriceButton.click();
-    
+  test('change shipping price', async ({ page }) => {
+    const countryInput = 'ger';
+    const postcodeText = '12345';
+    const countryShipping = 'German';
+    await cartPage.changeShippingCountry(
+      countryInput,
+      postcodeText,
+      countryShipping,
+    );
+
+    await expect(cartPage.flatRateText).toHaveText('20 zł');
+    await expect(cartPage.defaultShippingCountry).toHaveText('Germany');
+  });
+
+  test('select a Greek state from the shipping list', async ({ page }) => {
+    const countryInput = 'gre';
+    const postcodeText = '12345';
+    const countryShipping = 'Greece';
+    const stateName = 'Θεσσαλία';
+    await cartPage.changeShippingCountry(
+      countryInput,
+      postcodeText,
+      countryShipping,
+    );
+    await cartPage.statesDropdown.click();
+    await cartPage.stateNameList.getByText(stateName).click();
+
+    await expect(cartPage.flatRateText).toHaveText('20 zł');
+    await expect(cartPage.defaultShippingCountry).toHaveText('Greece');
   });
 });

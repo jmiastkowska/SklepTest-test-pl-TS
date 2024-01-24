@@ -14,18 +14,33 @@ export class CartPage {
   unitPrice = this.page.locator('//td[@class="product-price"]/span');
   subtotalPrice = this.page.getByText('70 zł').first();
 
-  calculateShipingButton = this.page.getByRole('link', {
-    name: 'Calculate shipping',
-  });
-  defaultShippingCountry = this.page.getByRole('textbox', { name: 'Poland' });
-  searchDropdownInput = this.page.getByRole('combobox').nth(1);
+  calculateShipingButton = this.page.locator(
+    '//*[@class="shipping-calculator-button"]',
+  );
+  defaultShippingCountry = this.page.locator(
+    '//*[@id="select2-calc_shipping_country-container"]',
+  );
+  searchShippingCountryInput = this.page.locator(
+    '//*[@class="select2-search__field"]',
+  );
 
-  shippingToGermany = this.page.getByRole('option', {
-    name: 'Germany',
-  });
+  shippingList = this.page.locator('//*[@id="select2-calc_shipping_country-results"]');
 
-  postcodeInput = this.page.getByPlaceholder('Postcode / ZIP');
-  updateShipingPriceButton = this.page.getByRole('button', {
-    name: 'Update totals',
-  });
+  postcodeInput = this.page.locator('//*[@id="calc_shipping_postcode"]');
+  updateShipingPriceButton = this.page.locator(
+    '//button[@name="calc_shipping"]',
+  );
+  flatRateText = this.page.locator('//*[@data-title = "Shipping"]/span');
+  statesDropdown = this.page.locator('//*[@id="select2-calc_shipping_state-container"]');
+  stateNameList = this.page.locator('//*[@id="select2-calc_shipping_state-results"]');
+
+  async changeShippingCountry(countryInput:string, postcodeText: string,countryShipping: string): Promise<void> {
+    await this.calculateShipingButton.click();
+    await this.defaultShippingCountry.click();
+    await this.searchShippingCountryInput.fill(countryInput);
+    await this.shippingList.getByText(countryShipping).first().click();
+    await this.postcodeInput.fill(postcodeText);
+    await this.updateShipingPriceButton.click();
+    await this.calculateShipingButton.click();
+  }
 }

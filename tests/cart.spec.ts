@@ -81,5 +81,6 @@ test.describe('tests cart page', () => {
 
     await expect(cartPage.flatRateText).toHaveText('20 zł');
     await expect(cartPage.defaultShippingCountry).toHaveText('Greece');
+    await expect(cartPage.statesDropdown).toHaveText(stateName);
   });
 });

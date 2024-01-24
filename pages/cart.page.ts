@@ -13,4 +13,19 @@ export class CartPage {
   emptyCartMessage = this.page.locator('//*[@class="cart-empty"]');
   unitPrice = this.page.locator('//td[@class="product-price"]/span');
   subtotalPrice = this.page.getByText('70 zł').first();
+
+  calculateShipingButton = this.page.getByRole('link', {
+    name: 'Calculate shipping',
+  });
+  defaultShippingCountry = this.page.getByRole('textbox', { name: 'Poland' });
+  searchDropdownInput = this.page.getByRole('combobox').nth(1);
+
+  shippingToGermany = this.page.getByRole('option', {
+    name: 'Germany',
+  });
+
+  postcodeInput = this.page.getByPlaceholder('Postcode / ZIP');
+  updateShipingPriceButton = this.page.getByRole('button', {
+    name: 'Update totals',
+  });
 }

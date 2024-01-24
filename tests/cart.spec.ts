@@ -54,14 +54,14 @@ test.describe('tests cart page', () => {
   });
 
   test('check shipping price', async ({ page }) => {
-    await page.getByRole('link', { name: 'Calculate shipping' }).click();
-
-    await page.getByRole('textbox', { name: 'Poland' }).click();
-    await page.getByRole('combobox').nth(1).click();
-    await page.getByRole('combobox').nth(1).fill('germ');
-    await page.getByRole('option', { name: 'Germany' }).click();
+    await cartPage.calculateShipingButton.click();
+    await cartPage.defaultShippingCountry.click();
+    await cartPage.searchDropdownInput.click();
+    await cartPage.searchDropdownInput.fill('germ');
+    await cartPage.shippingToGermany.click();
   
-    await page.getByPlaceholder('Postcode / ZIP').fill('12345');
-    await page.getByRole('button', { name: 'Update totals' }).click();
+    await cartPage.postcodeInput.fill('12345');
+    await cartPage.updateShipingPriceButton.click();
+    
   });
 });

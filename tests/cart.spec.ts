@@ -16,21 +16,27 @@ test.describe('tests cart page', () => {
   test('add to the cart 1 product on the cart page', async ({ page }) => {
     await cartPage.plusButton.click();
     await cartPage.updateCartButton.click();
+    await page.reload();
 
-    await expect(cartPage.quantity).toHaveValue('2');
-    await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
     const unitPriceTxt = await page
       .locator('//td[@class="product-price"]/span')
       .innerText();
     const unitPrice = unitPriceTxt.replace('zł', '');
     const expectedSubtotalPrice = +unitPrice * 2;
-
     const subtotalPrice = await page
       .locator('//*[@id="post-6"]/div[2]/form/table/tbody/tr[1]/td[6]/span')
       .innerText();
     const receivedSubtotalPrice = +subtotalPrice.replace('zł', '');
 
-    await expect(receivedSubtotalPrice).toBe(expectedSubtotalPrice);
+    expect(receivedSubtotalPrice).toBe(expectedSubtotalPrice);
+  });
+
+  test('check message after updating the cart', async ({ page }) => {
+    await cartPage.plusButton.click();
+    await cartPage.updateCartButton.click();
+
+    await expect(cartPage.quantity).toHaveValue('2');
+    await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
   });
 
   test('remove the one product from the cart', async ({ page }) => {
@@ -84,10 +90,17 @@ test.describe('tests cart page', () => {
     await expect(cartPage.statesDropdown).toHaveText(stateName);
   });
 
-  test('check if button proceed to checkout redirect to the checkout page', async ({ page }) => {
+  test('check total price of the cart', async ({ page }) => {
+    await cartPage.proceedToCheckoutButton.click();
+
+    // await expect(page).toHaveURL(/.checkout/);
+  });
+
+  test('check if button proceed to checkout redirect to the checkout page', async ({
+    page,
+  }) => {
     await cartPage.proceedToCheckoutButton.click();
 
     await expect(page).toHaveURL(/.checkout/);
   });
-  
 });

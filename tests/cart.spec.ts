@@ -83,4 +83,11 @@ test.describe('tests cart page', () => {
     await expect(cartPage.defaultShippingCountry).toHaveText('Greece');
     await expect(cartPage.statesDropdown).toHaveText(stateName);
   });
+
+  test('check if button proceed to checkout redirect to the checkout page', async ({ page }) => {
+    await cartPage.proceedToCheckoutButton.click();
+
+    await expect(page).toHaveURL(/.checkout/);
+  });
+  
 });

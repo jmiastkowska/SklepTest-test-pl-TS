@@ -33,6 +33,9 @@ export class CartPage {
   flatRateText = this.page.locator('//*[@data-title = "Shipping"]/span');
   statesDropdown = this.page.locator('//*[@id="select2-calc_shipping_state-container"]');
   stateNameList = this.page.locator('//*[@id="select2-calc_shipping_state-results"]');
+  proceedToCheckoutButton = this.page.locator('//*[@class="checkout-button button alt wc-forward"]');
+
+
 
   async changeShippingCountry(countryInput:string, postcodeText: string,countryShipping: string): Promise<void> {
     await this.calculateShipingButton.click();

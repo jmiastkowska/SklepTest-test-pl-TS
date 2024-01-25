@@ -89,9 +89,24 @@ test.describe('tests cart page', () => {
   });
 
   test('check total price of the cart', async ({ page }) => {
-    await cartPage.proceedToCheckoutButton.click();
+    const flatRateWithText = await page
+      .locator('//*[@data-title = "Shipping"]/span')
+      .innerText();
+    const flatPriceNumber = +flatRateWithText.replace('zł', '');
+    const subtotalPriceText = await page
+      .locator('//*[@class="cart-subtotal"]/td/span')
+      .innerText();
+    const subtotalPrice = +subtotalPriceText.replace('zł', '');
 
-    // await expect(page).toHaveURL(/.checkout/);
+    const expectedTotalPrice = flatPriceNumber + subtotalPrice;
+    const receivedTotalPriceText = await page
+      .locator('//*[@class="order-total"]/td/strong')
+      .innerText();
+    const receivedTotalPrice = +receivedTotalPriceText.replace('zł', '');
+
+    await cartPage.addProductWithButtonPlus();
+
+    expect(receivedTotalPrice).toBe(expectedTotalPrice);
   });
 
   test('check if button proceed to checkout redirect to the checkout page', async ({

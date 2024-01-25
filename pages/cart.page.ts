@@ -46,4 +46,9 @@ export class CartPage {
     await this.updateShipingPriceButton.click();
     await this.calculateShipingButton.click();
   }
+
+  async addProductWithButtonPlus(): Promise<void>{
+  await this.plusButton.click();
+  await this.updateCartButton.click();
+  }
 }

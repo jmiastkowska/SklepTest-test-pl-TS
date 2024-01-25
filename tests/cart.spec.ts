@@ -14,8 +14,7 @@ test.describe('tests cart page', () => {
   });
 
   test('add to the cart 1 product on the cart page', async ({ page }) => {
-    await cartPage.plusButton.click();
-    await cartPage.updateCartButton.click();
+    await cartPage.addProductWithButtonPlus();
     await page.reload();
 
     const unitPriceTxt = await page
@@ -32,8 +31,7 @@ test.describe('tests cart page', () => {
   });
 
   test('check message after updating the cart', async ({ page }) => {
-    await cartPage.plusButton.click();
-    await cartPage.updateCartButton.click();
+    await cartPage.addProductWithButtonPlus();
 
     await expect(cartPage.quantity).toHaveValue('2');
     await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');

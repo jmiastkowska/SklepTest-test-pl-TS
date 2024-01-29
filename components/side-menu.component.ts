@@ -8,4 +8,6 @@ export class SideMenuComponent {
   categoriesButton = this.page.getByRole('link', { name: 'Catergries ' });
   aboutUsButton = this.page.getByRole('link', { name: 'About Us' });
 
+  dressesCategoryFromList = this.page.getByRole('link', { name: 'Dresses' });
+
 }

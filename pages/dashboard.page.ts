@@ -3,7 +3,6 @@ import { SideMenuComponent } from '../components/side-menu.component';
 
 export class DashboardPage {
   constructor(private page: Page) {}
- 
   sideMenu = new SideMenuComponent(this.page);
 
   addToCartFirstButton = this.page.locator(

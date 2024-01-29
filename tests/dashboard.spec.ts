@@ -4,12 +4,12 @@ import { CartPage } from '../pages/cart.page';
 import { TIMEOUT } from 'dns';
 import { JacketSoulColorPage } from '../pages/JacketsSoulColor.page';
 
+
 test.describe('test main function of the dashboard', () => {
   let dashboardPage: DashboardPage;
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     dashboardPage = new DashboardPage(page);
-  });
 
   test('add 1 product to the cart', async ({ page }) => {
     await dashboardPage.addFirstProductToTheCart();
@@ -56,5 +56,6 @@ test.describe('test main function of the dashboard', () => {
     await expect(jacketSoulColorPage.titlePage).toHaveText('Jackets For The Soul. What Color Is Yours?');
   });
 
+  
 
 });

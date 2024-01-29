@@ -23,11 +23,11 @@ test.describe('tests cart page', () => {
     const unitPrice = unitPriceTxt.replace('zł', '');
     const expectedSubtotalPrice = +unitPrice * 2;
     const subtotalPrice = await page
-      .locator('//*[@id="post-6"]/div[2]/form/table/tbody/tr[1]/td[6]/span')
+      .locator('//*[@class="product-subtotal"]/span')
       .innerText();
     const receivedSubtotalPrice = +subtotalPrice.replace('zł', '');
 
-    expect(receivedSubtotalPrice).toBe(expectedSubtotalPrice);
+   expect(receivedSubtotalPrice).toBe(expectedSubtotalPrice);
   });
 
   test('check message after updating the cart', async ({ page }) => {

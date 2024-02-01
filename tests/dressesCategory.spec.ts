@@ -19,15 +19,14 @@ test.describe('tests dresses category', () => {
 
   test('check if only dresses are on the dresses category', async ({ page }) => {
    
-    const allLocatorsWithNameDress = page.locator('//*[@class="woocommerce-loop-product__title"]').evaluateAll((elements) =>
+    const allLocatorsWithNameDress = await page.locator('//*[@class="woocommerce-loop-product__title"]').evaluateAll((elements) =>
     elements.map((element) => element.textContent?.toLowerCase()));
 
   // Sprawdź, czy żaden z lokatorów nie zawiera słowa "dress"
-  for (const locatorText of await allLocatorsWithNameDress) {
+  for (const locatorText of allLocatorsWithNameDress) {
     expect(locatorText).toContain('dress');
   }
   expect((await allLocatorsWithNameDress).every((locatorText) => (locatorText).includes('dress'))).toBeTruthy();
-   // getByRole('link', { name: 'Marcara Sleeveless Dress 55 zł' })
-    //await expect(page).toHaveURL(/.dresses/);
+  
   });
 });

@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { PageType } from "../helpers/pageTypes";
 
 export class SideMenuComponent {
   constructor(private page: Page) {}
@@ -11,4 +12,6 @@ export class SideMenuComponent {
   dressesCategoryFromList = this.page.getByRole('link', { name: 'Dresses' });
   shirtsCategoryFromList = this.page.getByRole('link', { name: 'Shirts' });
 
-}
+ 
+
+} 

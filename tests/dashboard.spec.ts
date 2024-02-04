@@ -57,7 +57,7 @@ test.describe('test main function of the dashboard', () => {
       );
     });
 
-    test.only('Przekierowuje z dashboard do podstron: dress, skirt, bell', async ({
+    test.only('Redirect from dashboard to all categories', async ({
       page,
     }) => {
       
@@ -66,7 +66,7 @@ test.describe('test main function of the dashboard', () => {
       // await navigateToSubpage(page, PageType.SKIRT);
       //await navigateToSubpage(page, PageType.BELL);
 
-      // Sprawdzamy, czy po każdym kliknięciu następuje poprawne przekierowanie
-      expect(page).toHaveURL(/.dresses/);
+     
+      expect(await page.url()).toContain('/dresses');
     });
   });

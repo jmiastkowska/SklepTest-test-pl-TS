@@ -1,12 +1,12 @@
-export enum PageType{
-    ALL ='https://skleptest.pl/shop/',
-    SHIRTS = 'https://skleptest.pl/product-category/shirts/',
-    FEATURED = 'https://skleptest.pl/product-category/shirts/',
-    TRENDS = 'https://skleptest.pl/product-category/shirts/',
-    SCRAFTS = 'https://skleptest.pl/product-category/shirts/',
-    SHOES = 'https://skleptest.pl/product-category/shirts/',
-    TOPS = 'https://skleptest.pl/product-category/shirts/',
-    BLOUSE = 'https://skleptest.pl/product-category/shirts/',
-    JEANS = 'https://skleptest.pl/product-category/shirts/',
-    DRESSES = 'https://skleptest.pl/product-category/dresses/'
+export enum PageType {
+  ALL = 'https://skleptest.pl/shop/',
+  SHIRTS = 'https://skleptest.pl/product-category/shirts/',
+  FEATURED = 'https://skleptest.pl/product-category/featured/',
+  TRENDS = 'https://skleptest.pl/product-category/trends/',
+  SCARFS = 'https://skleptest.pl/product-category/scarfs/',
+  SHOES = 'https://skleptest.pl/product-category/shoes/',
+  TOPS = 'https://skleptest.pl/product-category/tops/',
+  BLOUSE = 'https://skleptest.pl/product-category/blouse/',
+  JEANS = 'https://skleptest.pl/product-category/jeans/',
+  DRESSES = 'https://skleptest.pl/product-category/dresses/',
 }

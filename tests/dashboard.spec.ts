@@ -57,16 +57,37 @@ test.describe('test main function of the dashboard', () => {
       );
     });
 
-    test.only('Redirect from dashboard to all categories', async ({
+    test('Redirect from dashboard to all categories', async ({
       page,
-    }) => {
-      
-      await dashboardPage.sideMenu.categoriesButton.hover();
-      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.DRESSES);
-      // await navigateToSubpage(page, PageType.SKIRT);
-      //await navigateToSubpage(page, PageType.BELL);
+    }) => { 
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.ALL);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.ALL);
 
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.SHIRTS);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.SHIRTS);
      
-      expect(await page.url()).toContain('/dresses');
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.FEATURED);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.FEATURED);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.TRENDS);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.TRENDS);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.SCARFS);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.SCARFS);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.SHOES);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.SHOES);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.TOPS);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.TOPS);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.BLOUSE);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.BLOUSE);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.JEANS);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.JEANS);
+      
+      await dashboardPage.navigateToCategory(SideMenuComponent, PageType.DRESSES);
+      await dashboardPage.checkPageContent(SideMenuComponent, PageType.DRESSES);
     });
   });

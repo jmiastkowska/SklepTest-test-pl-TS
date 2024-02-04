@@ -9,7 +9,7 @@ test.describe('tests dresses category', () => {
     await page.goto('/');
     const dashboardPage = new DashboardPage(page);
     dashboardPage.sideMenu.categoriesButton.hover();
-    await dashboardPage.sideMenu.dressesCategoryFromList.click();
+    await dashboardPage.sideMenu.dressesCategory.click();
     
   });
 

@@ -109,6 +109,12 @@ test.describe('tests cart page', () => {
     expect(receivedTotalPrice).toBe(expectedTotalPrice);
   });
 
-  
+  test('check if button proceed to checkout redirect to the checkout page', async ({
+    page,
+  }) => {
+    await cartPage.proceedToCheckoutButton.click();
+
+    await expect(page).toHaveURL(/.checkout/);
+  });
 
 });

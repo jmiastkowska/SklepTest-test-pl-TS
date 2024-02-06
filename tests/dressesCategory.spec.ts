@@ -16,17 +16,24 @@ test.describe('tests dresses category', () => {
   test('open the categories dresses from the dashboard', async ({ page }) => {
     await expect(page).toHaveURL(/.dresses/);
   });
+  
+  test('check if user is redirect to product details page is open', async ({ page }) => {
+   
+    await dressesCategoryPage.firstProductInDressesCategory.click();
+    await expect(page).toHaveURL(/.magnolia-dress/);
+  }); 
 
   test('check if only dresses are on the dresses category', async ({ page }) => {
    
     const allLocatorsWithNameDress = await page.locator('//*[@class="woocommerce-loop-product__title"]').evaluateAll((elements) =>
     elements.map((element) => element.textContent?.toLowerCase()));
 
-  // Sprawdź, czy żaden z lokatorów nie zawiera słowa "dress"
   for (const locatorText of allLocatorsWithNameDress) {
     expect(locatorText).toContain('dress');
   }
   expect((await allLocatorsWithNameDress).every((locatorText) => (locatorText).includes('dress'))).toBeTruthy();
   
   });
+
+
 });

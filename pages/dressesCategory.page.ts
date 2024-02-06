@@ -1,8 +1,8 @@
 import { Page } from '@playwright/test';
 
-export class DressesCategoryPage{
+export class DressesCategoryPage {
   constructor(private page: Page) {}
 
-firstProductInDressesCategory = this.page.locator('//*[@class="products"]/li[1]/a[1]');
+firstProductInDressesCategory = this.page.getByRole('link', { name: 'Magnolia Dress 25 zł' });
   
-};
+}

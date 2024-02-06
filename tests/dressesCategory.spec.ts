@@ -19,7 +19,8 @@ test.describe('tests dresses category', () => {
   
   test('check if user is redirect to product details page is open', async ({ page }) => {
    
-    await dressesCategoryPage.firstProductInDressesCategory.click();
+    await page.getByRole('link', { name: 'Magnolia Dress 25 zł' }).click();
+   
     await expect(page).toHaveURL(/.magnolia-dress/);
   }); 
 

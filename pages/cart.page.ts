@@ -79,10 +79,10 @@ export class CartPage {
   }
   async checkSelectedShippingCountry(
     shippingCountry: ShippingCountry,
-    cartPage,
+    page,
   ): Promise<void> {
     if (shippingCountry === ShippingCountry.AUSTRALIA) {
-      expect(cartPage.defaultShippingCountry.toHaveText('Australia'));
+      expect(page.defaultShippingCountry).toContainText('Australia');
     } else {
       throw new Error(`Unsupported page type: ${shippingCountry}`);
     }

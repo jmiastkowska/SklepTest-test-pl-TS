@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import { ShippingCountry } from '../helpers/shippingCountry';
 
 export class CartPage {
@@ -62,7 +62,15 @@ export class CartPage {
         break;
      
       default:
-        throw Error(`This website doesn't exist: ${shippingCountry}`);
+        throw Error(`This country doesn't exist: ${shippingCountry}`);
+    }
+  }
+  async checkSelecteShippingCountry(shippingCountry: ShippingCountry,page): Promise<void> {
+    if (shippingCountry === ShippingCountry.AUSTRALIA) {
+      expect(await page.defaultShippingCountry).toHaveText('Australia');
+          
+    } else {
+      throw new Error(`Unsupported page type: ${shippingCountry}`);
     }
   }
 

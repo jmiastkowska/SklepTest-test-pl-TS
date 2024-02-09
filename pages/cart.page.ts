@@ -72,17 +72,28 @@ export class CartPage {
       case ShippingCountry.AUSTRALIA:
         await await this.shippingList.getByText('Australia').first().click();
         break;
-
+      case ShippingCountry.ÅLAND:
+        await await this.shippingList
+          .getByText('Åland Islands')
+          .first()
+          .click();
+        break;
       default:
         throw Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
   async checkSelectedShippingCountry(
     shippingCountry: ShippingCountry,
-    page,
+    carPage,
   ): Promise<void> {
     if (shippingCountry === ShippingCountry.AUSTRALIA) {
-      expect(page.defaultShippingCountry).toContainText('Australia');
+      expect(carPage.defaultShippingCountry).toContainText('Australia');
+    } else if (shippingCountry === ShippingCountry.AUSTRIA) {
+      expect(carPage.defaultShippingCountry).toContainText('Austria');
+    } else if (shippingCountry === ShippingCountry.ÅLAND) {
+      expect(carPage.defaultShippingCountry).toContainText('Åland Islands');
+    } else if (shippingCountry === ShippingCountry.AZERBAIJAN) {
+      expect(carPage.defaultShippingCountry).toContainText('Azerbaijan');
     } else {
       throw new Error(`Unsupported page type: ${shippingCountry}`);
     }

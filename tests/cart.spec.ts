@@ -121,6 +121,9 @@ test.describe('tests cart page', () => {
   test('check if user can choose each country shipping', async ({ page }) => {
   
     await cartPage.navigateToShippingCountry(ShippingCountry.AUSTRALIA);
-    await cartPage.checkSelectedShippingCountry(ShippingCountry.AUSTRALIA,cartPage);
+    await cartPage.checkSelectedShippingCountry(ShippingCountry.AUSTRALIA, cartPage);
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ÅLAND);
+    await cartPage.checkSelectedShippingCountry(ShippingCountry.ÅLAND, cartPage);
   });
 });

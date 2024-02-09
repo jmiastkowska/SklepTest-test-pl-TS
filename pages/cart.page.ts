@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import { ShippingCountry } from '../helpers/shippingCountry';
 
 export class CartPage {
   constructor(private page: Page) {}
@@ -51,4 +52,18 @@ export class CartPage {
   await this.plusButton.click();
   await this.updateCartButton.click();
   }
+
+  async navigateToShippingCountry(shippingCountry: ShippingCountry): Promise<void> {
+    await this.calculateShipingButton.click();
+    await this.defaultShippingCountry.click();
+    switch (shippingCountry) {
+      case ShippingCountry.AUSTRALIA:
+        await await this.shippingList.getByText('Australia').first().click();;
+        break;
+     
+      default:
+        throw Error(`This website doesn't exist: ${shippingCountry}`);
+    }
+  }
+
 }

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { CartPage } from '../pages/cart.page';
 import { DashboardPage } from '../pages/dashboard.page';
+import { ShippingCountry } from '../helpers/shippingCountry';
 
 test.describe('tests cart page', () => {
   let cartPage: CartPage;
@@ -117,4 +118,13 @@ test.describe('tests cart page', () => {
     await expect(page).toHaveURL(/.checkout/);
   });
 
+  test('check if user can choose each country shipping', async ({ page }) => {
+  
+    await cartPage.navigateToShippingCountry(
+      ShippingCountry.AUSTRALIA
+    );
+
+    
+    await expect(cartPage.defaultShippingCountry).toHaveText('Australia');
+  });
 });

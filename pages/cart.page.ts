@@ -25,20 +25,30 @@ export class CartPage {
     '//*[@class="select2-search__field"]',
   );
 
-  shippingList = this.page.locator('//*[@id="select2-calc_shipping_country-results"]');
+  shippingList = this.page.locator(
+    '//*[@id="select2-calc_shipping_country-results"]',
+  );
 
   postcodeInput = this.page.locator('//*[@id="calc_shipping_postcode"]');
   updateShipingPriceButton = this.page.locator(
     '//button[@name="calc_shipping"]',
   );
   flatRateText = this.page.locator('//*[@data-title = "Shipping"]/span');
-  statesDropdown = this.page.locator('//*[@id="select2-calc_shipping_state-container"]');
-  stateNameList = this.page.locator('//*[@id="select2-calc_shipping_state-results"]');
-  proceedToCheckoutButton = this.page.locator('//*[@class="checkout-button button alt wc-forward"]');
+  statesDropdown = this.page.locator(
+    '//*[@id="select2-calc_shipping_state-container"]',
+  );
+  stateNameList = this.page.locator(
+    '//*[@id="select2-calc_shipping_state-results"]',
+  );
+  proceedToCheckoutButton = this.page.locator(
+    '//*[@class="checkout-button button alt wc-forward"]',
+  );
 
-
-
-  async changeShippingCountry(countryInput:string, postcodeText: string,countryShipping: string): Promise<void> {
+  async changeShippingCountry(
+    countryInput: string,
+    postcodeText: string,
+    countryShipping: string,
+  ): Promise<void> {
     await this.calculateShipingButton.click();
     await this.defaultShippingCountry.click();
     await this.searchShippingCountryInput.fill(countryInput);
@@ -48,30 +58,33 @@ export class CartPage {
     await this.calculateShipingButton.click();
   }
 
-  async addProductWithButtonPlus(): Promise<void>{
-  await this.plusButton.click();
-  await this.updateCartButton.click();
+  async addProductWithButtonPlus(): Promise<void> {
+    await this.plusButton.click();
+    await this.updateCartButton.click();
   }
 
-  async navigateToShippingCountry(shippingCountry: ShippingCountry): Promise<void> {
+  async navigateToShippingCountry(
+    shippingCountry: ShippingCountry,
+  ): Promise<void> {
     await this.calculateShipingButton.click();
     await this.defaultShippingCountry.click();
     switch (shippingCountry) {
       case ShippingCountry.AUSTRALIA:
-        await await this.shippingList.getByText('Australia').first().click();;
+        await await this.shippingList.getByText('Australia').first().click();
         break;
-     
+
       default:
         throw Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
-  async checkSelecteShippingCountry(shippingCountry: ShippingCountry,page): Promise<void> {
+  async checkSelectedShippingCountry(
+    shippingCountry: ShippingCountry,
+    cartPage,
+  ): Promise<void> {
     if (shippingCountry === ShippingCountry.AUSTRALIA) {
-      expect(await page.defaultShippingCountry).toHaveText('Australia');
-          
+      expect(cartPage.defaultShippingCountry.toHaveText('Australia'));
     } else {
       throw new Error(`Unsupported page type: ${shippingCountry}`);
     }
   }
-
 }

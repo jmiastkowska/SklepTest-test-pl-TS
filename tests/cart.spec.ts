@@ -125,6 +125,6 @@ test.describe('tests cart page', () => {
     );
 
     
-    await expect(cartPage.defaultShippingCountry).toHaveText('Australia');
+    await cartPage.checkSelectedShippingCountry(ShippingCountry.AUSTRALIA,cartPage);
   });
 });

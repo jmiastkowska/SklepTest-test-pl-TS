@@ -70,13 +70,16 @@ export class CartPage {
     await this.defaultShippingCountry.click();
     switch (shippingCountry) {
       case ShippingCountry.AUSTRALIA:
-        await await this.shippingList.getByText('Australia').first().click();
+        await this.shippingList.getByText('Australia').first().click();
         break;
       case ShippingCountry.ÅLAND:
-        await await this.shippingList
-          .getByText('Åland Islands')
-          .first()
-          .click();
+        await this.shippingList.getByText('Åland Islands').first().click();
+        break;
+      case ShippingCountry.AUSTRIA:
+        await this.shippingList.getByText('Austria').first().click();
+        break;
+      case ShippingCountry.AZERBAIJAN:
+        await this.shippingList.getByText('Azerbaijan').first().click();
         break;
       default:
         throw Error(`This country doesn't exist: ${shippingCountry}`);
@@ -84,18 +87,18 @@ export class CartPage {
   }
   async checkSelectedShippingCountry(
     shippingCountry: ShippingCountry,
-    carPage,
+    page,
   ): Promise<void> {
     if (shippingCountry === ShippingCountry.AUSTRALIA) {
-      expect(carPage.defaultShippingCountry).toContainText('Australia');
+      expect(page.defaultShippingCountry).toContainText('Australia');
     } else if (shippingCountry === ShippingCountry.AUSTRIA) {
-      expect(carPage.defaultShippingCountry).toContainText('Austria');
+      expect(page.defaultShippingCountry).toContainText('Austria');
     } else if (shippingCountry === ShippingCountry.ÅLAND) {
-      expect(carPage.defaultShippingCountry).toContainText('Åland Islands');
+      expect(page.defaultShippingCountry).toContainText('Åland Islands');
     } else if (shippingCountry === ShippingCountry.AZERBAIJAN) {
-      expect(carPage.defaultShippingCountry).toContainText('Azerbaijan');
+      expect(page.defaultShippingCountry).toContainText('Azerbaijan');
     } else {
-      throw new Error(`Unsupported page type: ${shippingCountry}`);
+      throw new Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
 }

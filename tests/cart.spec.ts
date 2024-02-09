@@ -125,5 +125,11 @@ test.describe('tests cart page', () => {
 
     await cartPage.navigateToShippingCountry(ShippingCountry.ÅLAND);
     await cartPage.checkSelectedShippingCountry(ShippingCountry.ÅLAND, cartPage);
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.AUSTRIA);
+    await cartPage.checkSelectedShippingCountry(ShippingCountry.AUSTRIA, cartPage);
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.AZERBAIJAN);
+    await cartPage.checkSelectedShippingCountry(ShippingCountry.AZERBAIJAN, cartPage);
   });
 });

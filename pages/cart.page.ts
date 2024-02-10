@@ -81,10 +81,48 @@ export class CartPage {
       case ShippingCountry.AZERBAIJAN:
         await this.shippingList.getByText('Azerbaijan').first().click();
         break;
+        case ShippingCountry.AFGANISTAN:
+        await this.shippingList.getByText('Afganistan').first().click();
+        break;
+        case ShippingCountry.ALBANIA:
+        await this.shippingList.getByText('Albania').first().click();
+        break;
+        case ShippingCountry.ALGERIA:
+        await this.shippingList.getByText('Alegeria').first().click();
+        break;
+        case ShippingCountry.AMERICAN_SAMOA:
+        await this.shippingList.getByText('American Samoa').first().click();
+        break;
+        case ShippingCountry.ANDORRA:
+        await this.shippingList.getByText('Androrra').first().click();
+        break;
+        case ShippingCountry.ANGOLA:
+        await this.shippingList.getByText('Angola').first().click();
+        break;
+        case ShippingCountry.ANGUILLA:
+        await this.shippingList.getByText('Anguilla').first().click();
+        break;
+        case ShippingCountry.ANTARCTICA:
+        await this.shippingList.getByText('Antarctica').first().click();
+        break;
+        case ShippingCountry.ANTIGUA_AND_BARBUDA:
+        await this.shippingList.getByText('Antigua and Babuda').first().click();
+        break;
+        case ShippingCountry.ARGENTINA:
+        await this.shippingList.getByText('Arentina').first().click();
+        break;
+        case ShippingCountry.ARMENIA:
+        await this.shippingList.getByText('Armenia').first().click();
+        break;
+        case ShippingCountry.ARUBA:
+        await this.shippingList.getByText('Aruba').first().click();
+        break;
+        
       default:
         throw Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
+
   async checkSelectedShippingCountry(
     shippingCountry: ShippingCountry,
     page,
@@ -97,8 +135,31 @@ export class CartPage {
       expect(page.defaultShippingCountry).toContainText('Åland Islands');
     } else if (shippingCountry === ShippingCountry.AZERBAIJAN) {
       expect(page.defaultShippingCountry).toContainText('Azerbaijan');
+    } else if (shippingCountry === ShippingCountry.ALBANIA) {
+      expect(page.defaultShippingCountry).toContainText('Albania');
+    } else if (shippingCountry === ShippingCountry.ALGERIA) {
+      expect(page.defaultShippingCountry).toContainText('Algeria');
+    } else if (shippingCountry === ShippingCountry.AMERICAN_SAMOA) {
+      expect(page.defaultShippingCountry).toContainText('American Samoa');
+    } else if (shippingCountry === ShippingCountry.ANDORRA) {
+      expect(page.defaultShippingCountry).toContainText('Adorra');
+    } else if (shippingCountry === ShippingCountry.ANGOLA) {
+      expect(page.defaultShippingCountry).toContainText('Angola');
+    } else if (shippingCountry === ShippingCountry.ANTARCTICA) {
+      expect(page.defaultShippingCountry).toContainText('Antarctica');
+    } else if (shippingCountry === ShippingCountry.ARMENIA) {
+      expect(page.defaultShippingCountry).toContainText('Armenia');
+    } else if (shippingCountry === ShippingCountry.ANGUILLA) {
+      expect(page.defaultShippingCountry).toContainText('Anguilla');
+    } else if (shippingCountry === ShippingCountry.ANTIGUA_AND_BARBUDA) {
+      expect(page.defaultShippingCountry).toContainText('Antigua and Barbuda');
+    } else if (shippingCountry === ShippingCountry.ARGENTINA) {
+      expect(page.defaultShippingCountry).toContainText('Argentina');
+    } else if (shippingCountry === ShippingCountry.ARUBA) {
+      expect(page.defaultShippingCountry).toContainText('Aruba');
     } else {
       throw new Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
 }
+

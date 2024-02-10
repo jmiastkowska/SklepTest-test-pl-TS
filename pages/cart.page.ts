@@ -81,20 +81,20 @@ export class CartPage {
       case ShippingCountry.AZERBAIJAN:
         await this.shippingList.getByText('Azerbaijan').first().click();
         break;
-        case ShippingCountry.AFGANISTAN:
-        await this.shippingList.getByText('Afganistan').first().click();
+        case ShippingCountry.AFGHANISTAN:
+        await this.shippingList.getByText('Afghanistan').first().click();
         break;
         case ShippingCountry.ALBANIA:
         await this.shippingList.getByText('Albania').first().click();
         break;
         case ShippingCountry.ALGERIA:
-        await this.shippingList.getByText('Alegeria').first().click();
+        await this.shippingList.getByText('Algeria').first().click();
         break;
         case ShippingCountry.AMERICAN_SAMOA:
         await this.shippingList.getByText('American Samoa').first().click();
         break;
         case ShippingCountry.ANDORRA:
-        await this.shippingList.getByText('Androrra').first().click();
+        await this.shippingList.getByText('Andorra').first().click();
         break;
         case ShippingCountry.ANGOLA:
         await this.shippingList.getByText('Angola').first().click();
@@ -106,10 +106,10 @@ export class CartPage {
         await this.shippingList.getByText('Antarctica').first().click();
         break;
         case ShippingCountry.ANTIGUA_AND_BARBUDA:
-        await this.shippingList.getByText('Antigua and Babuda').first().click();
+        await this.shippingList.getByText('Antigua and Barbuda').first().click();
         break;
         case ShippingCountry.ARGENTINA:
-        await this.shippingList.getByText('Arentina').first().click();
+        await this.shippingList.getByText('Argentina').first().click();
         break;
         case ShippingCountry.ARMENIA:
         await this.shippingList.getByText('Armenia').first().click();
@@ -142,7 +142,7 @@ export class CartPage {
     } else if (shippingCountry === ShippingCountry.AMERICAN_SAMOA) {
       expect(page.defaultShippingCountry).toContainText('American Samoa');
     } else if (shippingCountry === ShippingCountry.ANDORRA) {
-      expect(page.defaultShippingCountry).toContainText('Adorra');
+      expect(page.defaultShippingCountry).toContainText('Andorra');
     } else if (shippingCountry === ShippingCountry.ANGOLA) {
       expect(page.defaultShippingCountry).toContainText('Angola');
     } else if (shippingCountry === ShippingCountry.ANTARCTICA) {
@@ -157,6 +157,8 @@ export class CartPage {
       expect(page.defaultShippingCountry).toContainText('Argentina');
     } else if (shippingCountry === ShippingCountry.ARUBA) {
       expect(page.defaultShippingCountry).toContainText('Aruba');
+    } else if (shippingCountry === ShippingCountry.AFGHANISTAN) {
+      expect(page.defaultShippingCountry).toContainText('Afghanistan');
     } else {
       throw new Error(`This country doesn't exist: ${shippingCountry}`);
     }

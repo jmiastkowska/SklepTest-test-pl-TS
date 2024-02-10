@@ -28,7 +28,7 @@ test.describe('tests cart page', () => {
       .innerText();
     const receivedSubtotalPrice = +subtotalPrice.replace('zł', '');
 
-   expect(receivedSubtotalPrice).toBe(expectedSubtotalPrice);
+    expect(receivedSubtotalPrice).toBe(expectedSubtotalPrice);
   });
 
   test('check message after updating the cart', async ({ page }) => {
@@ -119,17 +119,102 @@ test.describe('tests cart page', () => {
   });
 
   test('check if user can choose each country shipping', async ({ page }) => {
-  
     await cartPage.navigateToShippingCountry(ShippingCountry.AUSTRALIA);
-    await cartPage.checkSelectedShippingCountry(ShippingCountry.AUSTRALIA, cartPage);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.AUSTRALIA,
+      cartPage,
+    );
 
     await cartPage.navigateToShippingCountry(ShippingCountry.ÅLAND);
-    await cartPage.checkSelectedShippingCountry(ShippingCountry.ÅLAND, cartPage);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ÅLAND,
+      cartPage,
+    );
 
     await cartPage.navigateToShippingCountry(ShippingCountry.AUSTRIA);
-    await cartPage.checkSelectedShippingCountry(ShippingCountry.AUSTRIA, cartPage);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.AUSTRIA,
+      cartPage,
+    );
 
     await cartPage.navigateToShippingCountry(ShippingCountry.AZERBAIJAN);
-    await cartPage.checkSelectedShippingCountry(ShippingCountry.AZERBAIJAN, cartPage);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.AZERBAIJAN,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.AFGHANISTAN);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.AFGHANISTAN,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ALBANIA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ALBANIA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ALGERIA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ALGERIA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.AMERICAN_SAMOA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.AMERICAN_SAMOA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ANDORRA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ANDORRA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ANGOLA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ANGOLA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ANGUILLA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ANGUILLA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ANTARCTICA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ANTARCTICA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(
+      ShippingCountry.ANTIGUA_AND_BARBUDA,
+    );
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ANTIGUA_AND_BARBUDA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ARGENTINA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ARGENTINA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ARMENIA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ARMENIA,
+      cartPage,
+    );
+
+    await cartPage.navigateToShippingCountry(ShippingCountry.ARUBA);
+    await cartPage.checkSelectedShippingCountry(
+      ShippingCountry.ARUBA,
+      cartPage,
+    );
   });
 });

@@ -1,6 +1,6 @@
 export enum ShippingCountry{
 ÅLAND = "Åland Islands",
-AFGANISTAN = "Afganistan",
+AFGHANISTAN = "Afghanistan",
 ALBANIA = "Albania",
 ALGERIA= "Algeria",
 AMERICAN_SAMOA = "American Samoa",
@@ -15,8 +15,8 @@ ARUBA = "Aruba",
 AUSTRALIA = "Australia",
 AUSTRIA = "Austria",
 AZERBAIJAN = "Azerbaijan",
-BAHAMAS = "Bahamas",
+/*BAHAMAS = "Bahamas",
 BAHRAIN = "Bahrain",
 BANGLADESH = "Bangladesh"
-
+*/
 }

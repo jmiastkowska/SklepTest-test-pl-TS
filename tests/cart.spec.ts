@@ -221,7 +221,7 @@ test.describe('tests cart page', () => {
   test('check if states list is displayed', async ({ page }) => {
     
     await cartPage.navigateToShippingCountry(ShippingCountry.ANGOLA);
-
+await cartPage.chooseStateFromList(ShippingCountry.ANGOLA, cartPage);
    // await expect(cartPage.stateNameList).toHaveText('Moxico');
   });
 

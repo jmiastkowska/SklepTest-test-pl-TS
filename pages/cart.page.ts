@@ -127,6 +127,9 @@ export class CartPage {
     shippingCountry: ShippingCountry,
     page,
   ): Promise<void> {
+    await this.calculateShipingButton.click();
+    await this.defaultShippingCountry.click();
+    
     if (shippingCountry === ShippingCountry.AUSTRALIA) {
       expect(page.defaultShippingCountry).toContainText('Australia');
     } else if (shippingCountry === ShippingCountry.AUSTRIA) {
@@ -163,5 +166,19 @@ export class CartPage {
       throw new Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
+  async chooseStateFromList(
+    shippingCountry: ShippingCountry,
+    page,
+  ): Promise<void> {
+    if (page.navigateToShippingCountry(ShippingCountry.ANGOLA)) {
+      page.stateNameList.getByText('Moxico').click();
+    } else if (shippingCountry === ShippingCountry.ARGENTINA) {
+      page.stateNameList.getByText('Chaco').click();
+   
+    } else {
+      throw new Error(`This ${shippingCountry} doesn't have state `);
+    }
+  }
+
 }
 

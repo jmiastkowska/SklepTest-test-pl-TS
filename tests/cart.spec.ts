@@ -217,4 +217,12 @@ test.describe('tests cart page', () => {
       cartPage,
     );
   });
+
+  test('check if states list is displayed', async ({ page }) => {
+    
+    await cartPage.navigateToShippingCountry(ShippingCountry.ANGOLA);
+
+   // await expect(cartPage.stateNameList).toHaveText('Moxico');
+  });
+
 });

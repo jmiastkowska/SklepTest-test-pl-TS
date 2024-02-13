@@ -167,17 +167,20 @@ export class CartPage {
     }
   }
   async chooseStateFromList(
-    shippingCountry: ShippingCountry,page
+    shippingCountry: ShippingCountry,
+    page,
   ): Promise<void> {
     await this.calculateShipingButton.click();
     await this.statesDropdown.click();
     switch (shippingCountry) {
-      case (ShippingCountry.ANGOLA):
+      case ShippingCountry.ANGOLA:
         await page.stateNameList.getByText('Moxico').click();
         break;
-      case (ShippingCountry.ARGENTINA):
-       
-      await page.stateNameList.getByText('Chaco').click();
+      case ShippingCountry.ARGENTINA:
+        await page.stateNameList.getByText('Chaco').click();
+        break;
+        case ShippingCountry.AUSTRALIA:
+        await page.stateNameList.getByText('Victoria').click();
         break;
       default:
         throw Error(`${shippingCountry} doesn't have a state.`);

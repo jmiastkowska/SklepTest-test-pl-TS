@@ -219,10 +219,12 @@ test.describe('tests cart page', () => {
   });
 
   test('check if states list is displayed', async ({ page }) => {
-    
     await cartPage.navigateToShippingCountry(ShippingCountry.ANGOLA);
-await cartPage.chooseStateFromList(ShippingCountry.ANGOLA, cartPage);
+    await cartPage.chooseStateFromList(ShippingCountry.ANGOLA, cartPage);
     await expect(cartPage.statesDropdown).toHaveText('Moxico');
-  });
 
+    await cartPage.navigateToShippingCountry(ShippingCountry.ARGENTINA);
+    await cartPage.chooseStateFromList(ShippingCountry.ARGENTINA, cartPage);
+    await expect(cartPage.statesDropdown).toHaveText('Chaco');
+  });
 });

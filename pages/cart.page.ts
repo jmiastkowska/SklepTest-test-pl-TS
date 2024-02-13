@@ -81,53 +81,55 @@ export class CartPage {
       case ShippingCountry.AZERBAIJAN:
         await this.shippingList.getByText('Azerbaijan').first().click();
         break;
-        case ShippingCountry.AFGHANISTAN:
+      case ShippingCountry.AFGHANISTAN:
         await this.shippingList.getByText('Afghanistan').first().click();
         break;
-        case ShippingCountry.ALBANIA:
+      case ShippingCountry.ALBANIA:
         await this.shippingList.getByText('Albania').first().click();
         break;
-        case ShippingCountry.ALGERIA:
+      case ShippingCountry.ALGERIA:
         await this.shippingList.getByText('Algeria').first().click();
         break;
-        case ShippingCountry.AMERICAN_SAMOA:
+      case ShippingCountry.AMERICAN_SAMOA:
         await this.shippingList.getByText('American Samoa').first().click();
         break;
-        case ShippingCountry.ANDORRA:
+      case ShippingCountry.ANDORRA:
         await this.shippingList.getByText('Andorra').first().click();
         break;
-        case ShippingCountry.ANGOLA:
+      case ShippingCountry.ANGOLA:
         await this.shippingList.getByText('Angola').first().click();
         break;
-        case ShippingCountry.ANGUILLA:
+      case ShippingCountry.ANGUILLA:
         await this.shippingList.getByText('Anguilla').first().click();
         break;
-        case ShippingCountry.ANTARCTICA:
+      case ShippingCountry.ANTARCTICA:
         await this.shippingList.getByText('Antarctica').first().click();
         break;
-        case ShippingCountry.ANTIGUA_AND_BARBUDA:
-        await this.shippingList.getByText('Antigua and Barbuda').first().click();
+      case ShippingCountry.ANTIGUA_AND_BARBUDA:
+        await this.shippingList
+          .getByText('Antigua and Barbuda')
+          .first()
+          .click();
         break;
-        case ShippingCountry.ARGENTINA:
+      case ShippingCountry.ARGENTINA:
         await this.shippingList.getByText('Argentina').first().click();
         break;
-        case ShippingCountry.ARMENIA:
+      case ShippingCountry.ARMENIA:
         await this.shippingList.getByText('Armenia').first().click();
         break;
-        case ShippingCountry.ARUBA:
+      case ShippingCountry.ARUBA:
         await this.shippingList.getByText('Aruba').first().click();
         break;
-        
+
       default:
         throw Error(`This country doesn't exist: ${shippingCountry}`);
     }
   }
 
   async checkSelectedShippingCountry(
-    shippingCountry: ShippingCountry, page
+    shippingCountry: ShippingCountry,
+    page,
   ): Promise<void> {
-  
-    
     if (shippingCountry === ShippingCountry.AUSTRALIA) {
       expect(page.defaultShippingCountry).toContainText('Australia');
     } else if (shippingCountry === ShippingCountry.AUSTRIA) {
@@ -165,19 +167,20 @@ export class CartPage {
     }
   }
   async chooseStateFromList(
-    shippingCountry: ShippingCountry,
-    page,
+    shippingCountry: ShippingCountry,page
   ): Promise<void> {
-    if (page.checkSelectedShippingCountry(ShippingCountry.ANGOLA, page)) {
-      await page.statesDropdown.click();
-      await page.stateNameList.getByText('Moxico').click();
-    } else if (page.checkSelectedShippingCountry(ShippingCountry.ARGENTINA, page)) {
-     await page.stateNameList.getByText('Chaco').click();
-   
-    } else {
-      throw new Error(`This ${shippingCountry} doesn't have state `);
+    await this.calculateShipingButton.click();
+    await this.statesDropdown.click();
+    switch (shippingCountry) {
+      case (ShippingCountry.ANGOLA):
+        await page.stateNameList.getByText('Moxico').click();
+        break;
+      case (ShippingCountry.ARGENTINA):
+       
+      await page.stateNameList.getByText('Chaco').click();
+        break;
+      default:
+        throw Error(`${shippingCountry} doesn't have a state.`);
     }
   }
-
 }
-

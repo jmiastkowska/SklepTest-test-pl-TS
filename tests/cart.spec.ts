@@ -222,7 +222,7 @@ test.describe('tests cart page', () => {
     
     await cartPage.navigateToShippingCountry(ShippingCountry.ANGOLA);
 await cartPage.chooseStateFromList(ShippingCountry.ANGOLA, cartPage);
-   // await expect(cartPage.stateNameList).toHaveText('Moxico');
+    await expect(cartPage.statesDropdown).toHaveText('Moxico');
   });
 
 });

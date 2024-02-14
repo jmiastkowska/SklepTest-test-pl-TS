@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { DashboardPage } from '../pages/dashboard.page';
 import { CartPage } from '../pages/cart.page';
-import { TIMEOUT } from 'dns';
 import { JacketSoulColorPage } from '../pages/JacketsSoulColor.page';
 import { PageType } from '../helpers/pageTypes';
 import { SideMenuComponent } from '../components/side-menu.component';

@@ -14,13 +14,22 @@ test.describe('tests login and register', () => {
       myAccountPage = new MyAccountPage(page);
     });
   
-    test('register newaccount', async ({ page }) => {
-      await page.getByLabel('Email address *', { exact: true }).click();
-      await page.getByLabel('Email address *', { exact: true }).fill('truskawka2@wp.pl');
-      await page.getByLabel('Email address *', { exact: true }).press('Tab');
-      await page.locator('#reg_password').fill('passTest123.');
-      await page.getByRole('button', { name: 'Register' }).click();
-      await page.getByText('truskawka2').first().click();
+    test('register new account', async ({ page }) => {
+      
+      await myAccountPage.emailRegisterInput.fill('truskawka4@wp.pl');
+     
+      await myAccountPage.passwordRegisterInput.fill('passTest123.');
+      await myAccountPage.registerButton.click();
+      await myAccountPage.registerButton.click();
+     await expect(myAccountPage.UserNameText).toHaveText('truskawka4');
     });
-
+   
+    test('login to account', async ({ page }) => {
+    
+     
+       
+        await myAccountPage.passwordRegisterInput.fill('passTest123.');
+        await myAccountPage.registerButton.click();
+        await page.getByText('truskawka2').first().click();
+      });
 });

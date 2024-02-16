@@ -6,12 +6,12 @@ export class MyAccountPage {
 
   emailRegisterInput = this.page.locator('//*[@id="reg_email"]');
   passwordRegisterInput = this.page.locator('#reg_password');
-  registerButton = this.page.getByRole('button', { name: 'Register' });
-  UserNameText = this.page.locator('//*[@class="woocommerce-MyAccount-content"]');
-
+  registerButton = this.page.locator('//*[@class="woocommerce-Button button"][@name="register"]');
+  userNameText = this.page.locator('//*[@class="woocommerce-MyAccount-content"]/p/strong[1]');
+    confirmationStronhPasswordText = this.page.locator('//*[@class="woocommerce-password-strength strong"]');
 
   usernameInput = this.page.getByLabel('Username or email address *');
-  passwortInput = this.page.locator('#password');
+  passwordInput = this.page.locator('#password');
   
   loginButton = this.page.getByRole('button', { name: 'Login' });
     

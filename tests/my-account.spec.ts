@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { DashboardPage } from '../pages/dashboard.page';
 import { MyAccountPage } from '../pages/myAccount.page';
-import { TIMEOUT } from 'dns';
+import { loginData } from '../test-data/login.data';
 
 test.describe('tests login and register', () => {
   let myAccountPage: MyAccountPage;
@@ -15,8 +15,10 @@ test.describe('tests login and register', () => {
   });
 
   test('register new account', async ({ page }) => {
-    await myAccountPage.emailRegisterInput.fill('truskawka5@wp.pl');
-    await myAccountPage.passwordRegisterInput.pressSequentially('passTestowe12345,.', { delay: 100 });
+    const email = 'truskawka5@wp.pl';
+    const password = 'passTestowe12345,.';
+    await myAccountPage.emailRegisterInput.fill(email);
+    await myAccountPage.passwordRegisterInput.pressSequentially(password, { delay: 100 });
     await myAccountPage.passwordRegisterInput.blur();
    await expect(myAccountPage.confirmationStronhPasswordText).toBeVisible();
    await expect(myAccountPage.registerButton).not.toBeDisabled();
@@ -25,9 +27,11 @@ test.describe('tests login and register', () => {
   });
 
   test('login to account', async ({ page }) => {
-    await myAccountPage.usernameInput.fill('truskawka2');
-    await myAccountPage.passwordInput.fill('passTest123.');
+    const username = loginData.username;
+    const password = loginData.password;
+    await myAccountPage.usernameInput.fill(username);
+    await myAccountPage.passwordInput.fill(password);
     await myAccountPage.loginButton.click();
-    await page.getByText('truskawka2').first().click();
+    await expect(myAccountPage.userNameText).toContainText(loginData.username);
   });
 });

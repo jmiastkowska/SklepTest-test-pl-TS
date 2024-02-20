@@ -42,7 +42,7 @@ test.describe('tests login and register', () => {
     await myAccountPage.usernameInput.fill(username);
     await myAccountPage.passwordInput.fill(password);
     await myAccountPage.loginButton.click();
-    await page.getByRole('link', { name: 'Addresses' }).click();
+    await page.getByRole('link', { name: 'Addresses' }).first().click();
     await page.locator('header').filter({ hasText: 'Billing address Edit' }).getByRole('link').click();
    
     await page.getByLabel('First name *').fill('Ewa');

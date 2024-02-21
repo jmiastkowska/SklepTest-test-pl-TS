@@ -15,6 +15,7 @@ export class MyAccountPage {
   
   loginButton = this.page.getByRole('button', { name: 'Login' });
     
-
+  firstNameInput = this.page.getByLabel('First name *');
+  lastNameInput = this.page.getByLabel('Last name *');
 
 }

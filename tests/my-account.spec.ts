@@ -45,8 +45,8 @@ test.describe('tests login and register', () => {
     await page.getByRole('link', { name: 'Addresses' }).first().click();
     await page.locator('header').filter({ hasText: 'Billing address Edit' }).getByRole('link').click();
    
-    await page.getByLabel('First name *').fill('Ewa');
-    await page.getByLabel('Last name *').fill('Truskawka');
+    await myAccountPage.firstNameInput.fill('Ewa');
+    await myAccountPage.lastNameInput.fill('Truskawka');
     await page.getByRole('textbox', { name: 'Poland' }).click();
     await page.getByRole('option', { name: 'Austria' }).click();
     await page.getByPlaceholder('House number and street name').fill('SommerStrasse');

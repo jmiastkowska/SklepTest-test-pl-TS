@@ -15,6 +15,10 @@ export class MyAccountPage {
   
   loginButton = this.page.getByRole('button', { name: 'Login' });
     
-
+  firstNameInput = this.page.getByLabel('First name *');
+  lastNameInput = this.page.getByLabel('Last name *');
+  streetInput = this.page.getByPlaceholder('House number and street name');
+  postcodeInput = this.page.getByLabel('Postcode / ZIP *');
+  cityInput =  this.page.getByLabel('Town / City *');
 
 }

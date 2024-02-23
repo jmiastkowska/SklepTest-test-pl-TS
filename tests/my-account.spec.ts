@@ -34,4 +34,28 @@ test.describe('tests login and register', () => {
     await myAccountPage.loginButton.click();
     await expect(myAccountPage.userNameText).toContainText(loginData.username);
   });
+
+
+  test('adding an billing address to account', async ({ page }) => {
+    const username = loginData.username;
+    const password = loginData.password;
+    await myAccountPage.usernameInput.fill(username);
+    await myAccountPage.passwordInput.fill(password);
+    await myAccountPage.loginButton.click();
+    await page.getByRole('link', { name: 'Addresses' }).first().click();
+    await page.locator('header').filter({ hasText: 'Billing address Edit' }).getByRole('link').click();
+   
+    await myAccountPage.firstNameInput.fill('Ewa');
+    await myAccountPage.lastNameInput.fill('Truskawka');
+    await page.getByRole('textbox', { name: 'Poland' }).click();
+    await page.getByRole('option', { name: 'Austria' }).click();
+    await myAccountPage.streetInput.fill('SommerStrasse');
+    await myAccountPage.postcodeInput.fill('12345');
+    await myAccountPage.cityInput.fill('Vien');
+    await page.getByText('Dashboard Orders Downloads Addresses Account details Logout Billing address').click();
+    await page.getByLabel('Phone *').fill('564321789');
+    await page.getByRole('button', { name: 'Save address' }).click();
+
+   // await expect(myAccountPage.userNameText).toContainText(loginData.username);
+  });
 });

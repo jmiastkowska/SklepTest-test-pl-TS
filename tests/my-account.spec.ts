@@ -49,9 +49,9 @@ test.describe('tests login and register', () => {
     await myAccountPage.lastNameInput.fill('Truskawka');
     await page.getByRole('textbox', { name: 'Poland' }).click();
     await page.getByRole('option', { name: 'Austria' }).click();
-    await page.getByPlaceholder('House number and street name').fill('SommerStrasse');
-    await page.getByLabel('Postcode / ZIP *').fill('12345');
-    await page.getByLabel('Town / City *').fill('Vien');
+    await myAccountPage.streetInput.fill('SommerStrasse');
+    await myAccountPage.postcodeInput.fill('12345');
+    await myAccountPage.cityInput.fill('Vien');
     await page.getByText('Dashboard Orders Downloads Addresses Account details Logout Billing address').click();
     await page.getByLabel('Phone *').fill('564321789');
     await page.getByRole('button', { name: 'Save address' }).click();

@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { DashboardPage } from '../pages/dashboard.page';
 import { MyAccountPage } from '../pages/myAccount.page';
 import { loginData } from '../test-data/login.data';
+import { checkServerIdentity } from 'tls';
 
 test.describe('tests login and register', () => {
   let myAccountPage: MyAccountPage;
@@ -20,7 +21,7 @@ test.describe('tests login and register', () => {
     await myAccountPage.emailRegisterInput.fill(email);
     await myAccountPage.passwordRegisterInput.pressSequentially(password, { delay: 100 });
     await myAccountPage.passwordRegisterInput.blur();
-   await expect(myAccountPage.confirmationStronhPasswordText).toBeVisible();
+   await expect(myAccountPage.confirmationStrongPasswordText).toBeVisible();
    await expect(myAccountPage.registerButton).not.toBeDisabled();
     await myAccountPage.registerButton.click();
     await expect(myAccountPage.userNameText).toContainText('truskawka5');
@@ -39,23 +40,27 @@ test.describe('tests login and register', () => {
   test('adding an billing address to account', async ({ page }) => {
     const username = loginData.username;
     const password = loginData.password;
+    const name = 'Ewa';
+    const surname = 'Truskawka';
+    const street = 'SommerStrasse';
+    const postcode = '1110';
+    const city = 'Vienna';
     await myAccountPage.usernameInput.fill(username);
     await myAccountPage.passwordInput.fill(password);
     await myAccountPage.loginButton.click();
     await page.getByRole('link', { name: 'Addresses' }).first().click();
     await page.locator('header').filter({ hasText: 'Billing address Edit' }).getByRole('link').click();
    
-    await myAccountPage.firstNameInput.fill('Ewa');
-    await myAccountPage.lastNameInput.fill('Truskawka');
-    await page.getByRole('textbox', { name: 'Poland' }).click();
+    await myAccountPage.firstNameInput.fill(name);
+    await myAccountPage.lastNameInput.fill(surname);
+    await myAccountPage.billingCountryContainer.click();
     await page.getByRole('option', { name: 'Austria' }).click();
-    await myAccountPage.streetInput.fill('SommerStrasse');
-    await myAccountPage.postcodeInput.fill('12345');
-    await myAccountPage.cityInput.fill('Vien');
-    await page.getByText('Dashboard Orders Downloads Addresses Account details Logout Billing address').click();
-    await page.getByLabel('Phone *').fill('564321789');
-    await page.getByRole('button', { name: 'Save address' }).click();
+    await myAccountPage.streetInput.fill(street);
+    await myAccountPage.postcodeInput.fill(postcode);
+    await myAccountPage.cityInput.fill(city);
+    await myAccountPage.phoneNumberInput.fill('564321789');
+    await myAccountPage.saveAddressButton.click();
 
-   // await expect(myAccountPage.userNameText).toContainText(loginData.username);
+   await expect(myAccountPage.confirmationAddressChangeText).toContainText('Address changed successfully.');
   });
 });

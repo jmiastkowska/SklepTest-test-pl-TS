@@ -25,4 +25,11 @@ export class MyAccountPage {
   phoneNumberInput = this.page.locator('#billing_phone');
   saveAddressButton = this.page.getByRole('button', { name: 'Save address' });
   confirmationAddressChangeText =this.page.locator('//*[@class="woocommerce-message"]');
+  errorMessage = this.page.locator('//*[@class="woocommerce-error"]');
+
+  async loginToAccount (username, password): Promise<void> {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+  }
 }

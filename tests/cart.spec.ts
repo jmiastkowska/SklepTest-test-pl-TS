@@ -38,6 +38,13 @@ test.describe('tests cart page', () => {
     await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
   });
 
+  test('order 2 items', async ({ page }) => {
+    await cartPage.addProductWithButtonPlus();
+
+    await cartPage.proceedToCheckoutButton.click();
+    //await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
+  });
+
   test('remove the one product from the cart', async ({ page }) => {
     await cartPage.minusButton.click();
     await cartPage.updateCartButton.click();

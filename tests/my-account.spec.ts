@@ -19,10 +19,12 @@ test.describe('tests login and register', () => {
     const email = 'truskawka5@wp.pl';
     const password = 'passTestowe12345,.';
     await myAccountPage.emailRegisterInput.fill(email);
-    await myAccountPage.passwordRegisterInput.pressSequentially(password, { delay: 100 });
+    await myAccountPage.passwordRegisterInput.pressSequentially(password, {
+      delay: 100,
+    });
     await myAccountPage.passwordRegisterInput.blur();
-   await expect(myAccountPage.confirmationStrongPasswordText).toBeVisible();
-   await expect(myAccountPage.registerButton).not.toBeDisabled();
+    await expect(myAccountPage.confirmationStrongPasswordText).toBeVisible();
+    await expect(myAccountPage.registerButton).not.toBeDisabled();
     await myAccountPage.registerButton.click();
     await expect(myAccountPage.userNameText).toContainText('truskawka5');
   });
@@ -30,12 +32,9 @@ test.describe('tests login and register', () => {
   test('login to account', async ({ page }) => {
     const username = loginData.username;
     const password = loginData.password;
-    await myAccountPage.usernameInput.fill(username);
-    await myAccountPage.passwordInput.fill(password);
-    await myAccountPage.loginButton.click();
+    await myAccountPage.loginToAccount(username, password);
     await expect(myAccountPage.userNameText).toContainText(loginData.username);
   });
-
 
   test('adding an billing address to account', async ({ page }) => {
     const username = loginData.username;
@@ -45,12 +44,14 @@ test.describe('tests login and register', () => {
     const street = 'SommerStrasse';
     const postcode = '1110';
     const city = 'Vienna';
-    await myAccountPage.usernameInput.fill(username);
-    await myAccountPage.passwordInput.fill(password);
-    await myAccountPage.loginButton.click();
+    await myAccountPage.loginToAccount(username, password);
     await page.getByRole('link', { name: 'Addresses' }).first().click();
-    await page.locator('header').filter({ hasText: 'Billing address Edit' }).getByRole('link').click();
-   
+    await page
+      .locator('header')
+      .filter({ hasText: 'Billing address Edit' })
+      .getByRole('link')
+      .click();
+
     await myAccountPage.firstNameInput.fill(name);
     await myAccountPage.lastNameInput.fill(surname);
     await myAccountPage.billingCountryContainer.click();
@@ -61,6 +62,41 @@ test.describe('tests login and register', () => {
     await myAccountPage.phoneNumberInput.fill('564321789');
     await myAccountPage.saveAddressButton.click();
 
-   await expect(myAccountPage.confirmationAddressChangeText).toContainText('Address changed successfully.');
+    await expect(myAccountPage.confirmationAddressChangeText).toContainText(
+      'Address changed successfully.',
+    );
+  });
+
+  test('check warning message by wrong postcode on billing address', async ({
+    page,
+  }) => {
+    const username = loginData.username;
+    const password = loginData.password;
+    const name = 'John';
+    const surname = 'Trust';
+    const street = 'Dluga';
+    const postcode = '99';
+    const city = 'Wroclaw';
+    const phone = '987654321'
+    await myAccountPage.loginToAccount(username, password);
+    await page.getByRole('link', { name: 'Addresses' }).first().click();
+    await page
+      .locator('header')
+      .filter({ hasText: 'Billing address Edit' })
+      .getByRole('link')
+      .click();
+
+    await myAccountPage.firstNameInput.fill(name);
+    await myAccountPage.lastNameInput.fill(surname);
+  
+    await myAccountPage.streetInput.fill(street);
+    await myAccountPage.postcodeInput.fill(postcode);
+    await myAccountPage.cityInput.fill(city);
+    await myAccountPage.phoneNumberInput.fill(phone);
+    await myAccountPage.saveAddressButton.click();
+
+    await expect(myAccountPage.errorMessage).toContainText(
+      'Please enter a valid postcode / ZIP.',
+    );
   });
 });

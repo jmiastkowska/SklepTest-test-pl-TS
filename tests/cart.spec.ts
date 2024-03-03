@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { CartPage } from '../pages/cart.page';
 import { DashboardPage } from '../pages/dashboard.page';
 import { ShippingCountry } from '../helpers/shippingCountry';
+import { CheckoutPage } from '../pages/checkout.page';
 
 test.describe('tests cart page', () => {
   let cartPage: CartPage;
@@ -39,9 +40,12 @@ test.describe('tests cart page', () => {
   });
 
   test('order 2 items', async ({ page }) => {
+    
     await cartPage.addProductWithButtonPlus();
 
     await cartPage.proceedToCheckoutButton.click();
+    const checkoutPage = new CheckoutPage(page);
+    await checkoutPage.placeOrderButton.click();
     //await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
   });
 

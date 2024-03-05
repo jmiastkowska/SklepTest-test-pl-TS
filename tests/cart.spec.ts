@@ -18,7 +18,7 @@ test.describe('tests cart page', () => {
 
   test('add to the cart 1 product on the cart page', async ({ page }) => {
     await cartPage.addProductWithButtonPlus();
-    await page.reload();
+    
 
     const unitPriceTxt = await page
       .locator('//td[@class="product-price"]/span')

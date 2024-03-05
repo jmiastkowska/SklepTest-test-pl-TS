@@ -61,6 +61,7 @@ export class CartPage {
   async addProductWithButtonPlus(): Promise<void> {
     await this.plusButton.click();
     await this.updateCartButton.click();
+    await this.page.reload();
   }
 
   async navigateToShippingCountry(

@@ -3,6 +3,7 @@ import { CartPage } from '../pages/cart.page';
 import { DashboardPage } from '../pages/dashboard.page';
 import { ShippingCountry } from '../helpers/shippingCountry';
 import { CheckoutPage } from '../pages/checkout.page';
+import { loginData } from '../test-data/login.data';
 
 test.describe('tests cart page', () => {
   let cartPage: CartPage;
@@ -40,13 +41,19 @@ test.describe('tests cart page', () => {
   });
 
   test('order 2 items', async ({ page }) => {
-    
+    const username = loginData.username;
+    const password = loginData.password;
     await cartPage.addProductWithButtonPlus();
 
     await cartPage.proceedToCheckoutButton.click();
     const checkoutPage = new CheckoutPage(page);
+    await checkoutPage.showLoginButton.click();
+
+await page.getByLabel('Username or email *').fill(username);
+await page.getByLabel('Password *', { exact: true }).fill(password);
+await page.getByRole('button', { name: 'Login' }).click();
     await checkoutPage.placeOrderButton.click();
-    //await expect(cartPage.updateCartMessage).toHaveText('Cart updated.');
+    await expect(checkoutPage.pageTitle).toHaveText('Order received');
   });
 
   test('remove the one product from the cart', async ({ page }) => {

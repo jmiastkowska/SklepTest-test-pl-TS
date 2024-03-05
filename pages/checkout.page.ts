@@ -7,4 +7,5 @@ export class CheckoutPage {
 
 showLoginButton =  this.page.locator('.showlogin');
 placeOrderButton = this.page.locator('//*[@id="place_order"]');
+pageTitle = this.page.locator('//*[@class="page-title margin-top"]');
 }

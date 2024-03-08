@@ -47,18 +47,19 @@ test.describe('tests cart page', () => {
 
     await cartPage.proceedToCheckoutButton.click();
     const checkoutPage = new CheckoutPage(page);
+    
    // await checkoutPage.showLoginButton.click();
 
 //await page.getByLabel('Username or email *').fill(username);
 //await page.getByLabel('Password *', { exact: true }).fill(password);
 //await page.getByRole('button', { name: 'Login' }).click();
-await page.locator('#billing_first_name').fill('Ewa');
-await page.locator('#billing_last_name').fill('Tran');
-await page.getByRole('textbox', { name: 'Street address *' }).fill('Glowna 213a');
-await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).fill('10-304');
-await page.getByRole('textbox', { name: 'Town / City *' }).fill('Tarnow');
-await page.getByLabel('Phone *').fill('098765432');
-await page.getByLabel('Email address *').fill('Ewatran@wp.pl');
+await checkoutPage.firstNameCheckoutInput.fill('Ewa');
+await checkoutPage.lastNameCheckoutInput.fill('Tran');
+await checkoutPage.streetCheckoutInput.fill('Glowna 213a');
+await checkoutPage.postcodeCheckoutInput.fill('10-304');
+await checkoutPage.cityCheckoutInput.fill('Tarnow');
+await checkoutPage.phoneCheckoutInput.fill('098765432');
+await checkoutPage.emailCheckoutInput.fill('Ewatran@wp.pl');
     await checkoutPage.placeOrderButton.click();
     await expect(checkoutPage.pageTitle).toHaveText('Order received');
   });

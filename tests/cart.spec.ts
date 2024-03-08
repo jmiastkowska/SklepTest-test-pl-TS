@@ -18,7 +18,6 @@ test.describe('tests cart page', () => {
 
   test('add to the cart 1 product on the cart page', async ({ page }) => {
     await cartPage.addProductWithButtonPlus();
-    
 
     const unitPriceTxt = await page
       .locator('//td[@class="product-price"]/span')
@@ -41,25 +40,17 @@ test.describe('tests cart page', () => {
   });
 
   test('order 2 items', async ({ page }) => {
-   // const username = loginData.username;
-    //const password = loginData.password;
     await cartPage.addProductWithButtonPlus();
-
     await cartPage.proceedToCheckoutButton.click();
-    const checkoutPage = new CheckoutPage(page);
-    
-   // await checkoutPage.showLoginButton.click();
 
-//await page.getByLabel('Username or email *').fill(username);
-//await page.getByLabel('Password *', { exact: true }).fill(password);
-//await page.getByRole('button', { name: 'Login' }).click();
-await checkoutPage.firstNameCheckoutInput.fill('Ewa');
-await checkoutPage.lastNameCheckoutInput.fill('Tran');
-await checkoutPage.streetCheckoutInput.fill('Glowna 213a');
-await checkoutPage.postcodeCheckoutInput.fill('10-304');
-await checkoutPage.cityCheckoutInput.fill('Tarnow');
-await checkoutPage.phoneCheckoutInput.fill('098765432');
-await checkoutPage.emailCheckoutInput.fill('Ewatran@wp.pl');
+    const checkoutPage = new CheckoutPage(page);
+    await checkoutPage.firstNameCheckoutInput.fill('Ewa');
+    await checkoutPage.lastNameCheckoutInput.fill('Tran');
+    await checkoutPage.streetCheckoutInput.fill('Glowna 213a');
+    await checkoutPage.postcodeCheckoutInput.fill('10-304');
+    await checkoutPage.cityCheckoutInput.fill('Tarnow');
+    await checkoutPage.phoneCheckoutInput.fill('098765432');
+    await checkoutPage.emailCheckoutInput.fill('Ewatran@wp.pl');
     await checkoutPage.placeOrderButton.click();
     await expect(checkoutPage.pageTitle).toHaveText('Order received');
   });

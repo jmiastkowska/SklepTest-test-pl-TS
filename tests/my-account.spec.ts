@@ -99,4 +99,20 @@ test.describe('tests login and register', () => {
       'Please enter a valid postcode / ZIP.',
     );
   });
+
+  test('check if an order is displayed on the list', async ({ page }) => {
+    const username = loginData.username;
+    const password = loginData.password;
+    await myAccountPage.loginToAccount(username, password);
+    await myAccountPage.menuAccountOrders.click();
+    
+    const table = myAccountPage.tableOnTheOrderPage;
+    expect(await table.isVisible()).toBeTruthy();
+
+  // Zlokalizuj wszystkie wiersze tabeli
+  const rows = await table.locator('tr').count();
+
+  // Sprawdź, czy istnieje chociaż jeden wiersz w tabeli
+  expect(rows).toBeGreaterThan(0);
+  });
 });

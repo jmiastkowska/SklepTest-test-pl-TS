@@ -26,7 +26,9 @@ export class MyAccountPage {
   saveAddressButton = this.page.getByRole('button', { name: 'Save address' });
   confirmationAddressChangeText =this.page.locator('//*[@class="woocommerce-message"]');
   errorMessage = this.page.locator('//*[@class="woocommerce-error"]');
-
+  menuAccountOrders = this.page.getByRole('link', { name: 'Orders', exact: true });
+  firstCellonOrderPage = this.page.locator('#woocommerce-orders-table__row woocommerce-orders-table__row--status-processing order');
+tableOnTheOrderPage = this.page.getByText('Order Date Status Total Actions #7383 February 29, 2024 Processing 212.00 zł');
   async loginToAccount (username, password): Promise<void> {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);

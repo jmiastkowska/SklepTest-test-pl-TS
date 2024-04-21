@@ -180,7 +180,7 @@ export class CartPage {
       case ShippingCountry.ARGENTINA:
         await page.stateNameList.getByText('Chaco').click();
         break;
-        case ShippingCountry.AUSTRALIA:
+      case ShippingCountry.AUSTRALIA:
         await page.stateNameList.getByText('Victoria').click();
         break;
       default:

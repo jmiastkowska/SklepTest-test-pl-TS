@@ -1,8 +1,5 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class ShopPage {
-    
-    
-        constructor(private page: Page) {}
-
-    }
+  constructor(private page: Page) {}
+}

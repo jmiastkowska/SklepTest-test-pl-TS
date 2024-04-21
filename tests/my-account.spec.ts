@@ -77,7 +77,7 @@ test.describe('tests login and register', () => {
     const street = 'Dluga';
     const postcode = '99';
     const city = 'Wroclaw';
-    const phone = '987654321'
+    const phone = '987654321';
     await myAccountPage.loginToAccount(username, password);
     await page.getByRole('link', { name: 'Addresses' }).first().click();
     await page
@@ -88,7 +88,7 @@ test.describe('tests login and register', () => {
 
     await myAccountPage.firstNameInput.fill(name);
     await myAccountPage.lastNameInput.fill(surname);
-  
+
     await myAccountPage.streetInput.fill(street);
     await myAccountPage.postcodeInput.fill(postcode);
     await myAccountPage.cityInput.fill(city);
@@ -105,14 +105,12 @@ test.describe('tests login and register', () => {
     const password = loginData.password;
     await myAccountPage.loginToAccount(username, password);
     await myAccountPage.menuAccountOrders.click();
-    
+
     const table = myAccountPage.tableOnTheOrderPage;
     expect(await table.isVisible()).toBeTruthy();
 
-  // Zlokalizuj wszystkie wiersze tabeli
-  const rows = await table.locator('tr').count();
+    const rows = await table.locator('tr').count();
 
-  // Sprawdź, czy istnieje chociaż jeden wiersz w tabeli
-  expect(rows).toBeGreaterThan(0);
+    expect(rows).toBeGreaterThan(0);
   });
 });

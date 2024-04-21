@@ -19,7 +19,7 @@ test.describe('test main function of the dashboard', () => {
     await expect(cartPage.titlePage).toHaveText('Cart');
   });
 
- /* test('add 3 products from diffrent category to the cart', async ({
+  /* test('add 3 products from diffrent category to the cart', async ({
     page,
   }) => {
     const expectedFirstProduct = page.getByRole('cell', {

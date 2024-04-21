@@ -1,4 +1,4 @@
 {
-    "playwright.reuseBrowser": true,
-    "playwright.showTrace": false
+  "playwright.reuseBrowser": true,
+  "playwright.showTrace": false
 }
